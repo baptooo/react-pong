@@ -31,9 +31,12 @@ class App extends Component {
     window.onmousemove = ({pageY}) => this.setState({player: {y: pageY}});
   }
 
-  calculateSpeed(track, ball) {
-    const ratio = (ball.y - track.y) / (TRACK_HEIGHT / 2);
-    return ratio * 10;
+  calculateSpeedY(track, ball) {
+    return (ball.y - track.y) / (TRACK_HEIGHT / 2) * 10;
+  }
+
+  calculateSpeedX(current) {
+    return Math.max(-10, Math.min(10, -current * 1.1));
   }
 
   gameFrame() {
@@ -54,12 +57,19 @@ class App extends Component {
 
     if (hitsPlayer || hitsComputer) {
       if (hitsPlayer) {
-        speed.y = this.calculateSpeed(player, ball);
+        speed.y = this.calculateSpeedY(player, ball);
+
+        if (speed.x < 0) { // Prevent multiple collision detection on same track
+          speed.x = this.calculateSpeedX(speed.x);
+        }
       }
       if (hitsComputer) {
-        speed.y = this.calculateSpeed(computer, ball);
+        speed.y = this.calculateSpeedY(computer, ball);
+
+        if (speed.x > 0) { // Prevent multiple collision detection on same track
+          speed.x = this.calculateSpeedX(speed.x);
+        }
       }
-      speed.x = Math.max(-10, Math.min(10, -speed.x * 1.1));
     }
 
     if (ball.x < 0 || ball.x > width) {
