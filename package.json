@@ -1,6 +1,6 @@
 {
   "name": "react-pong",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "private": true,
   "devDependencies": {
     "react-scripts": "1.0.13"
@@ -14,9 +14,10 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
-    "_preversion": "npm run test",
+    "preversion": "rimraf docs && rimraf build",
     "version": "npm run build && mv ./build ./docs && git add -A ./docs",
     "postversion": "git push && git push --tags",
     "release": "npm version -m 'chore(package): release v%s'"
-  }
+  },
+  "homepage": "https://baptooo.github.io/react-pong/"
 }
