@@ -48,10 +48,11 @@ class App extends Component {
     ball.x += speed.x;
     ball.y += speed.y;
 
-    const hitsPlayer = ball.x < (TRACK_WIDTH + BALL_RADIUS / 2) && Math.abs(ball.y - player.y) < TRACK_HEIGHT / 2;
-    const hitsComputer = ball.x > (width - TRACK_WIDTH - BALL_RADIUS / 2) && (Math.abs(ball.y - computer.y) < TRACK_HEIGHT / 2);
+    const hitsPlayer = ball.x < (TRACK_WIDTH + BALL_RADIUS / 2) && Math.abs(ball.y - player.y) < (TRACK_HEIGHT / 2 + BALL_RADIUS / 2);
+    const hitsComputer = ball.x > (width - TRACK_WIDTH - BALL_RADIUS / 2) && Math.abs(ball.y - computer.y) < (TRACK_HEIGHT / 2 + BALL_RADIUS / 2);
     // Progressive handicap on 500ms threshold
-    const computerHandicap = Number((Math.sin(elapsedTime / 500) + 1) * difficulty.strength).toFixed(3);
+    const sineFactor = difficulty.strength >= 1 ? 1 : (Math.sin(elapsedTime / 500) + 1).toFixed(3);
+    const computerHandicap = sineFactor * difficulty.strength;
 
     computer.y = computer.y + (ball.y - computer.y) * computerHandicap;
 
@@ -106,7 +107,7 @@ class App extends Component {
     const {player, computer, ball, score, finished, difficulty} = this.state;
 
     return (
-      <section>
+      <section className="main">
         <h1>react-pong</h1>
         {difficulty ? (
           <div>

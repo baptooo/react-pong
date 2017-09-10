@@ -1,7 +1,7 @@
 export const DIFFICULTY_EASY = {
   label: 'Easy',
   description: 'Grandma will do it with no hand, booooo !',
-  strength: 0.1,
+  strength: 0.2,
   color: '#55e855',
   win: 'There is absolutely no glory in this, but gratz anyway...',
   loose: 'Oh no man... are you drunk or what ?!'
@@ -10,7 +10,7 @@ export const DIFFICULTY_EASY = {
 export const DIFFICULTY_MEDIUM = {
   label: 'Medium',
   description: 'Regular dude, no surprise, no ambition... Come on !',
-  strength: 0.3,
+  strength: 0.5,
   color: '#ffca6a',
   win: 'Ok budy ! now i can see a hair growing, let\'s try this hard level !',
   loose: 'Is there anybody that can teach you how to use your hand ?'
@@ -20,7 +20,7 @@ export const DIFFICULTY_MEDIUM = {
 export const DIFFICULTY_HARD = {
   label: 'Hard',
   description: 'Can you feel the sweat over your brow, bro ?',
-  strength: 0.7,
+  strength: 0.9,
   color: '#ff4747',
   win: 'Congratulations Human ! but do not consider yourself a beast until you tried the next level...',
   loose: 'Oh so who\'s the retarded computer now huh ?!'

@@ -5,7 +5,7 @@ import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 
 ReactDOM.render(<App
-  width={window.innerWidth}
+  width={Math.min(800, window.innerWidth)}
   height={window.innerHeight - 200}
 />, document.getElementById('root'));
 
